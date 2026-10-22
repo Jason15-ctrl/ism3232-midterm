@@ -33,10 +33,10 @@ def calculate_stay_total(
     """Returns the total cost of the stay after applying any applicable discounts"""
     room_cost = calculate_room_cost(nightly_rate, nights)
     discount = get_stay_discount(nights, corporate)
-    total_cost = room_cost - (room_cost * discount)
-    if total_cost <= CLEANING_LIMIT:
-        total_cost += CLEANING_FEE
-    return total_cost
+    discounted = room_cost * (1 - discount)
+    if discounted <= CLEANING_LIMIT:
+        return discounted + CLEANING_FEE
+    return discounted
 
 
 def requires_credit_check(total: float) -> bool:
@@ -54,10 +54,9 @@ def total_reserved(stays: list) -> float:
     total = 0.0
 
     for stay in stays:
-        nightly_rate = stay["nightly_rate"]
-        nights = stay["nights"]
-        corporate = stay.get("corporate", False)
-        total += calculate_stay_total(nightly_rate, nights, corporate)
+        total += calculate_stay_total(
+            stay["nightly_rate"], stay["nights"], stay.get("corporate", False)
+        )
     return total
 
 
