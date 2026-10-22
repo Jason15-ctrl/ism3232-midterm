@@ -36,14 +36,7 @@ for stay in stays:
 
     if welcome_package:
         welcome_package_count += 1
-    print(
-        format_stay_line(
-            stay["guest"],
-            total,
-            credit_check,
-            welcome_package,
-        )
-    )
+    print(format_stay_line(stay["guest"], total, credit_check, welcome_package))
 print(f"Stays: {count}")
 print(f"Total reserved: ${total_reserved(stays):.2f}")
 average = total_reserved(stays) / count
