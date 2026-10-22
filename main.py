@@ -38,9 +38,9 @@ for stay in stays:
         welcome_package_count += 1
     print(format_stay_line(stay["guest"], total, credit_check, welcome_package))
 print(f"Stays: {count}")
-print(f"Total reserved: ${total_reserved(stays):.2f}")
-average = total_reserved(stays) / count
-print(f"Average stay total: ${average:.2f}")
+reserved = total_reserved(stays)
+print(f"Total reserved: ${reserved:.2f}")
+print(f"Average stay total: ${reserved / count:.2f}")
 print(f"Largest stay total: {largest_stay(stays)}")
 print(f"Credit checks required: {credit_check_count}")
 print(f"Welcome packages: {welcome_package_count}")
