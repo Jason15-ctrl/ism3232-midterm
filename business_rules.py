@@ -82,14 +82,12 @@ def format_stay_line(
     guest: str, total: float, credit_check: bool, welcome_package: bool
 ) -> str:
     """Returns a formatted string for the stay line"""
+    credit_check_str = "no"
     if credit_check:
         credit_check_str = "yes"
-    else:
-        credit_check_str = "no"
 
+    welcome_package_str = "no"
     if welcome_package:
         welcome_package_str = "yes"
-    else:
-        welcome_package_str = "no"
 
     return f"{guest}: ${total:.2f} | credit check: {credit_check_str} | welcome package: {welcome_package_str}"
